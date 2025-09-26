@@ -1,0 +1,25 @@
+name: Run Example.py
+
+on:
+  push:            # Run when you push to GitHub
+    branches:
+      - main
+  pull_request:    # Run also on pull requests
+    branches:
+      - main
+
+jobs:
+  run-python:
+    runs-on: windows-latest   # Runner will be Windows VM
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: Run example.py
+        run: python example.py
